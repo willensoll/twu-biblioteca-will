@@ -14,4 +14,30 @@ public class BooksTests {
         Books bookList = new Books();
         ArrayList test = bookList.getBooks();
         assertThat(3, is(test.size()));    }
-}
+
+
+    @Test
+    public void book_has_name_value() {
+        Book testBook = new Book("Catcher in the Rye", "J D Salinger", "16 July 1951");
+        assertThat(testBook.name, is("Catcher in the Rye"));
+    }
+
+    @Test
+    public void book_has_author_value() {
+        Book testBook = new Book("Catcher in the Rye", "J D Salinger", "16 July 1951");
+        assertThat(testBook.author, is("J D Salinger"));
+    }
+
+    @Test
+    public void book_has_publishedDate_value() {
+        Book testBook = new Book("Catcher in the Rye", "J D Salinger", "16 July 1951");
+        assertThat(testBook.publishDate, is("16 July 1951"));
+    }
+
+    @Test
+    public void getBookName_returns_name_of_book() {
+        Book testBook = new Book("Catcher in the Rye", "J D Salinger", "16 July 1951");
+        String test = testBook.toListing();
+        assertThat(test, is("Catcher in the Rye | J D Salinger | 16 July 1951"));
+    }
+};

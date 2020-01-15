@@ -7,9 +7,9 @@ public class Prompter {
         System.out.println("Welcome to Biblioteca, your one-stop-shop for great book titles in Bangalore!");
     }
 
-    public void printBooks(ArrayList<String> bookList) {
-        for (String book: bookList) {
-            System.out.println(book);
+    public void printBooks(ArrayList<Book> bookList) {
+        for (Book book: bookList) {
+            System.out.println(book.toListing());
         }
     }
 }
