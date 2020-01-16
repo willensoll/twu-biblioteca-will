@@ -23,6 +23,10 @@ public class Prompter {
             case 1:
                 Books books = new Books();
                 printBooks(books.getBooks());
+                break;
+            default:
+                System.out.println("Please Select a Valid Option!");
+                initMenu();
         }
     }
 

@@ -5,15 +5,15 @@ public class Book {
 
     public String name;
     public String author;
-    public String publishDate;
+    public int publishYear;
 
-    public Book(String n, String a, String pd) {
+    public Book(String n, String a, int py) {
         name = n;
         author = a;
-        publishDate = pd;
+        publishYear = py;
     }
 
     public String toListing () {
-        return name + " | " + author + " | " + publishDate;
+        return name + " | " + author + " | " + publishYear;
     }
 }
