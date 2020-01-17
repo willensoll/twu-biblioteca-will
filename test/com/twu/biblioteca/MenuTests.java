@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -35,4 +34,9 @@ public class MenuTests {
         verify(mockPrompter).printWithNewLine("*** Thanks for using Biblioteca ***");
     }
 
+    @Test
+    public void callsCheckoutBookFunction() {
+        menuWithMock.printSelection("2");
+        verify(mockPrompter).print("Enter name of Book: ");
+    }
 }

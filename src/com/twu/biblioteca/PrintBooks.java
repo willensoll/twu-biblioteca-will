@@ -16,7 +16,6 @@ public class PrintBooks {
              ArrayList<Book> bookList =   book1.getBooks();
         _prompter.printWithNewLine("*** Showing Books ***");
         _prompter.printWithNewLine("*** Name | Author | Publish Date ***");
-
         for (Book book: bookList) {
             _prompter.printWithNewLine(book.toListing());
         }

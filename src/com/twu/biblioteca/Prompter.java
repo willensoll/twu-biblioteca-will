@@ -22,7 +22,7 @@ public class Prompter {
     }
 
     public String readInput() {
-        String s = sc.next();
+        String s = sc.nextLine();
         return s;
     }
 }

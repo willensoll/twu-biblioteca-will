@@ -28,6 +28,10 @@ public class Menu {
                 PrintBooks books = new PrintBooks(_prompter);
                 books.run();
                 break;
+            case "2":
+                CheckoutBook checkout = new CheckoutBook(_prompter);
+                checkout.checkOut();
+                break;
             case "Q":
                 quit();
                 break;

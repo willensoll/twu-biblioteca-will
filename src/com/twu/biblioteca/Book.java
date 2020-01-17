@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 
 public class Book {
 
-    public String name;
+    private String name;
     public String author;
     public int publishYear;
 
@@ -15,5 +15,9 @@ public class Book {
 
     public String toListing () {
         return name + " | " + author + " | " + publishYear;
+    }
+
+    public String getName() {
+        return name;
     }
 }
