@@ -1,40 +1,28 @@
 package com.twu.biblioteca;
-import java.util.ArrayList;
+
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Prompter {
 
-    private Scanner sc = new Scanner(System.in);
+    private Scanner sc;
+    private PrintStream _outputStream;
 
-    public void printWelcome() {
-        System.out.println("Welcome to Biblioteca, your one-stop-shop for great book titles in Bangalore!");
+    Prompter(PrintStream outputStream, Scanner scanner) {
+        sc = scanner;
+        _outputStream = outputStream;
     }
 
-    public void initMenu() {
-        System.out.println("*** Main Menu ***");
-        System.out.println("1 - List of Books");
-        System.out.print("Please select an option by number: ");
-        int selection = sc.nextInt();
-        printSelection(selection);
+    public void printWithNewLine(String message) {
+        _outputStream.println(message);
     }
 
-    private void printSelection(int selection) {
-        switch (selection) {
-            case 1:
-                Books books = new Books();
-                printBooks(books.getBooks());
-                break;
-            default:
-                System.out.println("Please Select a Valid Option!");
-                initMenu();
-        }
+    public void print(String message) {
+        _outputStream.print(message);
     }
 
-    private void printBooks(ArrayList<Book> bookList) {
-        System.out.println("*** Showing Books ***");
-        System.out.println("*** Name | Author | Publish Date ***");
-        for (Book book: bookList) {
-            System.out.println(book.toListing());
-        }
+    public String readInput() {
+        String s = sc.next();
+        return s;
     }
 }
