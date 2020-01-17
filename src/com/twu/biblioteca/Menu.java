@@ -29,7 +29,7 @@ public class Menu {
                 books.run();
                 break;
             case "2":
-                CheckoutBook checkout = new CheckoutBook(_prompter);
+                Books checkout = new Books(_prompter);
                 checkout.checkOut();
                 break;
             case "Q":

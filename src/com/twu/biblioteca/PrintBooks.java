@@ -12,7 +12,7 @@ public class PrintBooks {
 
 
     public void run() {
-        Books book1 = new Books();
+        Books book1 = new Books(_prompter);
              ArrayList<Book> bookList =   book1.getBooks();
         _prompter.printWithNewLine("*** Showing Books ***");
         _prompter.printWithNewLine("*** Name | Author | Publish Date ***");

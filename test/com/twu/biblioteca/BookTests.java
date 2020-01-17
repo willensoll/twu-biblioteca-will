@@ -17,7 +17,6 @@ public class BookTests {
         testBook = new Book("Catcher in the Rye", "J D Salinger", 1951);
     }
 
-
     @Test
     public void book_has_name_value() {
         assertThat(testBook.getName(), is("Catcher in the Rye"));
