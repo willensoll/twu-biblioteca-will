@@ -9,9 +9,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class BooksTests {
+public class LibraryTests {
 
-    private Books books;
+    private Library library;
     private Prompter prompterMock;
     private Book testBook;
     private Book testBook2;
@@ -27,104 +27,104 @@ public class BooksTests {
         testBook2 = new Book("Sum", "David Eagleman", 2009);
         bookList.add(testBook);
         bookList.add(testBook2);
-        books = new Books(prompterMock, bookList);
+        library = new Library(prompterMock, bookList);
 
     }
 
     @Test
     public void books_creates_books_list() {
-        ArrayList test = books.getBooks();
+        ArrayList test = library.getBooks();
         assertThat(2, is(test.size()));    }
 
     @Test
     public void validate_book_req_returns_true_if_book_found_in_available_list() throws InvalidNameException {
-        Book test = books.validateBookRequest("Catcher in the Rye", books.availableBookList);
+        Book test = library.validateBookRequest("Catcher in the Rye", library.availableBookList);
         assertThat(test, is(testBook));
     }
 
 
     @Test
     public void validate_book_req_returns_true_if_book_found_in_checkedOut_list() throws InvalidNameException {
-        books.amendBookAvailabilityAfterCheckout(testBook);
-        Book test = books.validateBookRequest("Catcher in the Rye", books.checkedOutBookList);
+        library.amendBookAvailabilityAfterCheckout(testBook);
+        Book test = library.validateBookRequest("Catcher in the Rye", library.checkedOutBookList);
         assertThat(test, is(testBook));
     }
 
     @Test
     public void validate_book_req_returns_true_if_book_found_in_list_ignores_case() throws InvalidNameException {
-        Book test = books.validateBookRequest("CATCHer in the rYe", books.availableBookList);
+        Book test = library.validateBookRequest("CATCHer in the rYe", library.availableBookList);
         assertThat(test, is(testBook));
     }
 
     @Test(expected = InvalidNameException.class)
     public void validate_book_req_throws_error_if_book_not_found_in_list() throws InvalidNameException {
-        books.validateBookRequest("The world according to Will", books.availableBookList);
+        library.validateBookRequest("The world according to Will", library.availableBookList);
     }
 
     @Test
     public void checkedOut_list_starts_at_0() {
-        assertThat(books.checkedOutBookList.size(), is(0));
+        assertThat(library.checkedOutBookList.size(), is(0));
     }
 
     @Test
     public void checkout_book_removes_book_from_available_list() {
-        books.amendBookAvailabilityAfterCheckout(testBook);
-        assertThat(books.availableBookList.size(), is(1));
+        library.amendBookAvailabilityAfterCheckout(testBook);
+        assertThat(library.availableBookList.size(), is(1));
     }
 
     @Test
     public void checkout_book_adds_book_to_checkedOut_list() {
-        books.amendBookAvailabilityAfterCheckout(testBook);
-        assertThat(books.checkedOutBookList.size(), is(1));
+        library.amendBookAvailabilityAfterCheckout(testBook);
+        assertThat(library.checkedOutBookList.size(), is(1));
     }
 
     @Test
     public void successful_checkout_prints_correct_messages() {
         when(prompterMock.readInput()).thenReturn("Catcher in the rye");
-        books.checkOut();
+        library.checkOut();
         verify(prompterMock).printWithNewLine("Thank you! Enjoy the book");
     }
 
     @Test
     public void unsuccessful_checkout_prints_correct_messages() {
         when(prompterMock.readInput()).thenReturn("Will");
-        books.checkOut();
+        library.checkOut();
         verify(prompterMock).printWithNewLine("*** Sorry, that book is not available ***");
     }
 
     @Test
     public void return_book_removes_book_from_checkedOut_list()
     {
-        books.amendBookAvailabilityAfterCheckout(testBook);
-        assertThat(books.availableBookList.size(), is(1));
-        books.amendBookAvailabilityAfterReturn(testBook);
-        assertThat(books.checkedOutBookList.size(), is(0));
+        library.amendBookAvailabilityAfterCheckout(testBook);
+        assertThat(library.availableBookList.size(), is(1));
+        library.amendBookAvailabilityAfterReturn(testBook);
+        assertThat(library.checkedOutBookList.size(), is(0));
     }
 
 
     @Test
-    public void return_book_removes_book_from_checkedOut_list_and_into_avail_list()
+    public void return_book_removes_adds_into_avail_list()
     {
-        books.amendBookAvailabilityAfterCheckout(testBook);
-        assertThat(books.availableBookList.size(), is(1));
-        books.amendBookAvailabilityAfterReturn(testBook);
-        assertThat(books.checkedOutBookList.size(), is(0));
-        assertThat(books.availableBookList.size(), is(2));
+        library.amendBookAvailabilityAfterCheckout(testBook);
+        assertThat(library.availableBookList.size(), is(1));
+        library.amendBookAvailabilityAfterReturn(testBook);
+        assertThat(library.checkedOutBookList.size(), is(0));
+        assertThat(library.availableBookList.size(), is(2));
 
     }
 
     @Test
     public void successful_return_prints_correct_messages() {
-        books.amendBookAvailabilityAfterCheckout(testBook);
+        library.amendBookAvailabilityAfterCheckout(testBook);
         when(prompterMock.readInput()).thenReturn("Catcher in the rye");
-        books.returnBooks();
+        library.returnBooks();
         verify(prompterMock).printWithNewLine("Thank you for returning the book");
     }
 
     @Test
     public void unsuccessful_return_prints_correct_messages() {
         when(prompterMock.readInput()).thenReturn("Will");
-        books.returnBooks();
+        library.returnBooks();
         verify(prompterMock).printWithNewLine("*** That is not a valid book to return ***");
     }
 }

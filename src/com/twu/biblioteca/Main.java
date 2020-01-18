@@ -10,7 +10,7 @@ public class Main {
         bookList.add(new Book("Ready Player One", "Ernest Cline", 2011));
         bookList.add(new Book("The Establishment", "Owen Jones", 2014));
         Menu menu = new Menu(prompter, bookList);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(prompter, menu);
-        bibliotecaApp.start();
+        App app = new App(prompter, menu);
+        app.start();
     }
 }

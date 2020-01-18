@@ -7,14 +7,13 @@ public class Menu {
     private Prompter _prompter;
     private Boolean _appInitialised;
     private ArrayList<Book> _bookList;
-    private Books _books;
+    private Library _library;
 
     Menu(Prompter prompter, ArrayList bookList) {
         _prompter = prompter;
         _appInitialised = true;
         _bookList = bookList;
-        _books = new Books(_prompter, _bookList);
-
+        _library = new Library(_prompter, _bookList);
     }
 
     public void initMenu() {
@@ -37,10 +36,10 @@ public class Menu {
                 printBooks.run();
                 break;
             case "2":
-                _books.checkOut();
+                _library.checkOut();
                 break;
             case "3":
-                _books.returnBooks();
+                _library.returnBooks();
                 break;
             case "Q":
                 quit();

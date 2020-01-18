@@ -3,13 +3,13 @@ package com.twu.biblioteca;
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
 
-public class Books {
+public class Library {
 
     public ArrayList<Book> availableBookList;
     public ArrayList<Book> checkedOutBookList;
     public Prompter _prompter;
 
-    public Books (Prompter prompter, ArrayList bookList) {
+    public Library(Prompter prompter, ArrayList bookList) {
         availableBookList = bookList;
         checkedOutBookList = new ArrayList<>();
         _prompter = prompter;

@@ -1,12 +1,12 @@
 package com.twu.biblioteca;
 
-public class BibliotecaApp {
+public class App {
 
     private Prompter _prompter;
     private Menu _menu;
 
 
-    BibliotecaApp(Prompter prompter, Menu menu) {
+    App(Prompter prompter, Menu menu) {
         _prompter = prompter;
         _menu = menu;
     }

@@ -12,15 +12,11 @@ public class PrintBooks {
         _bookList = bookList;
     }
 
-
     public void run() {
-        Books book1 = new Books(_prompter, _bookList);
-             ArrayList<Book> bookList =   book1.getBooks();
         _prompter.printWithNewLine("*** Showing Books ***");
         _prompter.printWithNewLine("*** Name | Author | Publish Date ***");
-        for (Book book: bookList) {
+        for (Book book: _bookList) {
             _prompter.printWithNewLine(book.toListing());
         }
     }
-
 }
