@@ -27,7 +27,7 @@ public class Books {
             amendBookAvailability(book);
             _prompter.printWithNewLine("Thank you! Enjoy the book");
         } catch (InvalidNameException exception) {
-            _prompter.printWithNewLine("*** That item is not available ***");
+            _prompter.printWithNewLine("*** Sorry, that book is not available ***");
         }
     }
 

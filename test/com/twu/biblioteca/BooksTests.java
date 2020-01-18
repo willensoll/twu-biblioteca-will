@@ -75,4 +75,11 @@ public class BooksTests {
         books.checkOut();
         verify(prompterMock).printWithNewLine("Thank you! Enjoy the book");
     }
+
+    @Test
+    public void unsuccessful_checkout_prints_correct_messages() {
+        when(prompterMock.readInput()).thenReturn("Will");
+        books.checkOut();
+        verify(prompterMock).printWithNewLine("*** Sorry, that book is not available ***");
+    }
 }
