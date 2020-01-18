@@ -20,30 +20,46 @@ public class Books {
     }
 
     public void checkOut() {
-        _prompter.print("Enter name of Book: ");
+        _prompter.print("Enter name of Book to borrow: ");
         String itemToCheckOut = _prompter.readInput();
         try {
-            Book book = validateBookRequest(itemToCheckOut);
-            amendBookAvailability(book);
+            Book book = validateBookRequest(itemToCheckOut, availableBookList);
+            amendBookAvailabilityAfterCheckout(book);
             _prompter.printWithNewLine("Thank you! Enjoy the book");
         } catch (InvalidNameException exception) {
             _prompter.printWithNewLine("*** Sorry, that book is not available ***");
         }
     }
 
-    public void amendBookAvailability(Book book) {
+    public void returnBooks () {
+        _prompter.print("Enter name of Book to return: ");
+        String itemToCheckOut = _prompter.readInput();
+        try {
+            Book book = validateBookRequest(itemToCheckOut, checkedOutBookList);
+            amendBookAvailabilityAfterReturn(book);
+            _prompter.printWithNewLine("Thank you for returning the book");
+
+        } catch (InvalidNameException exception) {
+            _prompter.printWithNewLine("*** That is not a valid book to return ***");
+        }
+    }
+
+    public void amendBookAvailabilityAfterCheckout(Book book) {
         availableBookList.remove(book);
         checkedOutBookList.add(book);
     }
 
-    public Book validateBookRequest(String bookName) throws InvalidNameException {
-        for (Book book: availableBookList) {
+    public void amendBookAvailabilityAfterReturn(Book book) {
+        checkedOutBookList.remove(book);
+        availableBookList.add(book);
+    }
+
+    public Book validateBookRequest(String bookName, ArrayList<Book> bookList) throws InvalidNameException {
+        for (Book book: bookList) {
             if (book.getName().equalsIgnoreCase(bookName)) {
                 return book;
             }
         }
         throw new InvalidNameException();
     }
-
-
 }

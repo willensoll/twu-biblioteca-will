@@ -7,11 +7,14 @@ public class Menu {
     private Prompter _prompter;
     private Boolean _appInitialised;
     private ArrayList<Book> _bookList;
+    private Books _books;
 
     Menu(Prompter prompter, ArrayList bookList) {
         _prompter = prompter;
         _appInitialised = true;
         _bookList = bookList;
+        _books = new Books(_prompter, _bookList);
+
     }
 
     public void initMenu() {
@@ -19,6 +22,7 @@ public class Menu {
             _prompter.printWithNewLine("*** Main Menu ***");
             _prompter.printWithNewLine("1 - List of Books");
             _prompter.printWithNewLine("2 - Check out Book");
+            _prompter.printWithNewLine("3 - Return a book");
             _prompter.printWithNewLine("Q - Quit Biblioteca");
             _prompter.print("Please select an option by number: ");
             String selection = _prompter.readInput();
@@ -29,13 +33,14 @@ public class Menu {
     public void printSelection(String selection) {
         switch (selection.toUpperCase()) {
             case "1":
-                PrintBooks books = new PrintBooks(_prompter, _bookList);
-                books.run();
+                PrintBooks printBooks = new PrintBooks(_prompter, _bookList);
+                printBooks.run();
                 break;
             case "2":
-                Books checkout = new Books(_prompter, _bookList);
-                checkout.checkOut();
+                _books.checkOut();
                 break;
+            case "3":
+                _books.returnBooks();
             case "Q":
                 quit();
                 break;

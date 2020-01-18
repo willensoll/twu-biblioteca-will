@@ -16,8 +16,8 @@ public class MenuTests {
     @Before
     public void setUpMenuTests() {
         mockPrompter = mock(Prompter.class);
-        ArrayList mockBooks = new ArrayList<Book>();
-        menuWithMock = new Menu(mockPrompter, mockBooks);
+        ArrayList mockBookList = new ArrayList<Book>();
+        menuWithMock = new Menu(mockPrompter, mockBookList);
     }
 
     @Test
@@ -41,6 +41,12 @@ public class MenuTests {
     @Test
     public void callsCheckoutBookFunction() {
         menuWithMock.printSelection("2");
-        verify(mockPrompter).print("Enter name of Book: ");
+        verify(mockPrompter).print("Enter name of Book to borrow: ");
+    }
+
+    @Test
+    public void callsReturnBookFunction() {
+        menuWithMock.printSelection("3");
+        verify(mockPrompter).print("Enter name of Book to return: ");
     }
 }
