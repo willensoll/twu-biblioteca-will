@@ -41,6 +41,7 @@ public class Menu {
                 break;
             case "3":
                 _books.returnBooks();
+                break;
             case "Q":
                 quit();
                 break;
