@@ -25,6 +25,7 @@ public class Books {
         try {
             Book book = validateBookRequest(itemToCheckOut);
             amendBookAvailability(book);
+            _prompter.printWithNewLine("Thank you! Enjoy the book");
         } catch (InvalidNameException exception) {
             _prompter.printWithNewLine("*** That item is not available ***");
         }
@@ -43,4 +44,6 @@ public class Books {
         }
         throw new InvalidNameException();
     }
+
+
 }

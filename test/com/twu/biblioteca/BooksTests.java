@@ -7,7 +7,7 @@ import javax.naming.InvalidNameException;
 import java.util.ArrayList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class BooksTests {
 
@@ -67,5 +67,12 @@ public class BooksTests {
     public void checkout_book_adds_book_to_checkedOut_list() {
         books.amendBookAvailability(testBook);
         assertThat(books.checkedOutBookList.size(), is(1));
+    }
+
+    @Test
+    public void successful_checkout_prints_correct_messages() {
+        when(prompterMock.readInput()).thenReturn("Catcher in the rye");
+        books.checkOut();
+        verify(prompterMock).printWithNewLine("Thank you! Enjoy the book");
     }
 }
