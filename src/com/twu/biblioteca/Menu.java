@@ -1,13 +1,17 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class Menu {
 
     private Prompter _prompter;
     private Boolean _appInitialised;
+    private ArrayList<Book> _bookList;
 
-    Menu(Prompter prompter) {
+    Menu(Prompter prompter, ArrayList bookList) {
         _prompter = prompter;
         _appInitialised = true;
+        _bookList = bookList;
     }
 
     public void initMenu() {
@@ -25,11 +29,11 @@ public class Menu {
     public void printSelection(String selection) {
         switch (selection.toUpperCase()) {
             case "1":
-                PrintBooks books = new PrintBooks(_prompter);
+                PrintBooks books = new PrintBooks(_prompter, _bookList);
                 books.run();
                 break;
             case "2":
-                Books checkout = new Books(_prompter);
+                Books checkout = new Books(_prompter, _bookList);
                 checkout.checkOut();
                 break;
             case "Q":

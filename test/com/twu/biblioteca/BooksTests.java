@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -15,35 +14,58 @@ public class BooksTests {
     private Books books;
     private Prompter prompterMock;
     private Book testBook;
+    private Book testBook2;
 
     @Before
     public void initBooksTests () {
 
         prompterMock = mock(Prompter.class);
-        books = new Books(prompterMock);
+        ArrayList<Book> booklist = new ArrayList<>();
+
         testBook = new Book("Catcher in the Rye", "J D Salinger", 1951);
+        testBook2 = new Book("Sum", "David Eagleman", 2009);
+        booklist.add(testBook);
+        booklist.add(testBook2);
+        books = new Books(prompterMock, booklist);
 
     }
 
     @Test
     public void books_creates_books_list() {
         ArrayList test = books.getBooks();
-        assertThat(3, is(test.size()));    }
+        assertThat(2, is(test.size()));    }
 
     @Test
     public void validate_book_req_returns_true_if_book_found_in_list() throws InvalidNameException {
         Book test = books.validateBookRequest("Catcher in the Rye");
-        assertThat(test.toListing(), is(testBook.toListing()));
+        assertThat(test, is(testBook));
     }
 
     @Test
     public void validate_book_req_returns_true_if_book_found_in_list_ignores_case() throws InvalidNameException {
         Book test = books.validateBookRequest("CATCHer in the rYe");
-        assertThat(test.toListing(), is(testBook.toListing()));
+        assertThat(test, is(testBook));
     }
 
     @Test(expected = InvalidNameException.class)
     public void validate_book_req_throws_error_if_book_not_found_in_list() throws InvalidNameException {
         books.validateBookRequest("The world according to Will");
+    }
+
+    @Test
+    public void checkedOut_list_starts_at_0() {
+        assertThat(books.checkedOutBookList.size(), is(0));
+    }
+
+    @Test
+    public void checkout_book_removes_book_from_available_list() {
+        books.amendBookAvailability(testBook);
+        assertThat(books.availableBookList.size(), is(1));
+    }
+
+    @Test
+    public void checkout_book_adds_book_to_checkedOut_list() {
+        books.amendBookAvailability(testBook);
+        assertThat(books.checkedOutBookList.size(), is(1));
     }
 }

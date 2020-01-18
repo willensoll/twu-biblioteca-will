@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Books {
 
@@ -10,14 +9,9 @@ public class Books {
     public ArrayList<Book> checkedOutBookList;
     public Prompter _prompter;
 
-
-
-    Books (Prompter prompter) {
-        availableBookList = new ArrayList();
-        checkedOutBookList = new ArrayList();
-        availableBookList.add(new Book("Catcher in the Rye", "J D Salinger", 1951));
-        availableBookList.add(new Book("Ready Player One", "Ernest Cline", 2011));
-        availableBookList.add(new Book("The Establishment", "Owen Jones", 2014));
+    public Books (Prompter prompter, ArrayList bookList) {
+        availableBookList = bookList;
+        checkedOutBookList = new ArrayList<>();
         _prompter = prompter;
     }
 
@@ -30,11 +24,15 @@ public class Books {
         String itemToCheckOut = _prompter.readInput();
         try {
             Book book = validateBookRequest(itemToCheckOut);
-            availableBookList.remove(book);
-            checkedOutBookList.add(book);
+            amendBookAvailability(book);
         } catch (InvalidNameException exception) {
             _prompter.printWithNewLine("*** That item is not available ***");
         }
+    }
+
+    public void amendBookAvailability(Book book) {
+        availableBookList.remove(book);
+        checkedOutBookList.add(book);
     }
 
     public Book validateBookRequest(String bookName) throws InvalidNameException {

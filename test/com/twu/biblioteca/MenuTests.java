@@ -2,6 +2,9 @@ package com.twu.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -13,7 +16,8 @@ public class MenuTests {
     @Before
     public void setUpMenuTests() {
         mockPrompter = mock(Prompter.class);
-        menuWithMock = new Menu(mockPrompter);
+        ArrayList mockBooks = new ArrayList<Book>();
+        menuWithMock = new Menu(mockPrompter, mockBooks);
     }
 
     @Test

@@ -4,15 +4,17 @@ import java.util.ArrayList;
 
 public class PrintBooks {
 
-    Prompter _prompter;
+    private Prompter _prompter;
+    private ArrayList<Book> _bookList;
 
-    PrintBooks(Prompter prompter) {
+    PrintBooks(Prompter prompter, ArrayList bookList) {
         _prompter = prompter;
+        _bookList = bookList;
     }
 
 
     public void run() {
-        Books book1 = new Books(_prompter);
+        Books book1 = new Books(_prompter, _bookList);
              ArrayList<Book> bookList =   book1.getBooks();
         _prompter.printWithNewLine("*** Showing Books ***");
         _prompter.printWithNewLine("*** Name | Author | Publish Date ***");
