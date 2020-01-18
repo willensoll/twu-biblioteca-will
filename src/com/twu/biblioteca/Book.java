@@ -4,8 +4,8 @@ package com.twu.biblioteca;
 public class Book {
 
     private String name;
-    public String author;
-    public int publishYear;
+    private String author;
+    private int publishYear;
 
     public Book(String n, String a, int py) {
         name = n;
@@ -20,4 +20,13 @@ public class Book {
     public String getName() {
         return name;
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getPublishYear() {
+        return publishYear;
+    }
+
 }

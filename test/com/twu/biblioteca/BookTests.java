@@ -24,12 +24,12 @@ public class BookTests {
 
     @Test
     public void book_has_author_value() {
-        assertThat(testBook.author, is("J D Salinger"));
+        assertThat(testBook.getAuthor(), is("J D Salinger"));
     }
 
     @Test
     public void book_has_publishedDate_value() {
-        assertThat(testBook.publishYear, is(1951));
+        assertThat(testBook.getPublishYear(), is(1951));
     }
 
     @Test

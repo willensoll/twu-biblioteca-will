@@ -7,7 +7,7 @@ public class Library {
 
     public ArrayList<Book> availableBookList;
     public ArrayList<Book> checkedOutBookList;
-    public Prompter _prompter;
+    private Prompter _prompter;
 
     public Library(Prompter prompter, ArrayList bookList) {
         availableBookList = bookList;
