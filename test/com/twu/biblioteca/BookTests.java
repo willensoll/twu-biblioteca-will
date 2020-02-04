@@ -38,6 +38,7 @@ public class BookTests {
         assertThat(test, is("Catcher in the Rye | J D Salinger | 1951"));
     }
 
-
+    @Test
+    public void book_has_isAvailable_boolean() { assertThat(testBook.getAvailability(), is(true)); }
 
 };

@@ -6,11 +6,13 @@ public class Book {
     private String name;
     private String author;
     private int publishYear;
+    private Boolean isAvailable;
 
     public Book(String n, String a, int py) {
         name = n;
         author = a;
         publishYear = py;
+        isAvailable = true;
     }
 
     public String toListing () {
@@ -27,6 +29,10 @@ public class Book {
 
     public int getPublishYear() {
         return publishYear;
+    }
+
+    public Boolean getAvailability() {
+        return isAvailable;
     }
 
 }
