@@ -35,4 +35,9 @@ public class Book {
         return isAvailable;
     }
 
+    public Boolean setAvailability() {
+        isAvailable = !isAvailable;
+        return isAvailable;
+    }
+
 }
