@@ -9,26 +9,31 @@ import static org.mockito.Mockito.verify;
 public class AppTests {
 
     private App app;
-    private Prompter mockPrompter;
-    private Menu mockMenu;
+    private IPrompter mockIPrompter;
+    private IMenu mockIMenu;
 
     @Before
     public void setUpAppTests() {
-        mockPrompter = mock(Prompter.class);
-        mockMenu = mock(Menu.class);
-        app = new App(mockPrompter, mockMenu);
+        mockIPrompter = mock(Prompter.class);
+        mockIMenu = mock(Menu.class);
+        app = new App(mockIPrompter, mockIMenu);
     }
 
     @Test
     public void Welcome_message_displays_on_init() {
         app.start();
-        verify(mockPrompter).printWithNewLine("Welcome to Biblioteca, your one-stop-shop for great book titles in Bangalore!");
+        verify(mockIPrompter).printWithNewLine("Welcome to Biblioteca, your one-stop-shop for great book titles in Bangalore!");
     }
 
     @Test
     public void Should_show_menu_on_init() {
         app.start();
-        verify(mockMenu).initMenu();
+        verify(mockIMenu).initMenu();
+    }
+
+    @Test
+    public void will_print_books_only_if_availiable() {
+
     }
 
 }

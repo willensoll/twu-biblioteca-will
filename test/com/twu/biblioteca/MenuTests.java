@@ -10,43 +10,43 @@ import static org.mockito.Mockito.verify;
 
 public class MenuTests {
 
-    private Prompter mockPrompter;
-    private Menu menuWithMock;
+    private IPrompter mockIPrompter;
+    private IMenu IMenuWithMock;
 
     @Before
     public void setUpMenuTests() {
-        mockPrompter = mock(Prompter.class);
+        mockIPrompter = mock(Prompter.class);
         ArrayList mockBookList = new ArrayList<Book>();
-        menuWithMock = new Menu(mockPrompter, mockBookList);
+        IMenuWithMock = new Menu(mockIPrompter, mockBookList);
     }
 
     @Test
     public void list_of_book_shown_when_selected_on_menu() {
-        menuWithMock.printSelection("1");
-        verify(mockPrompter).printWithNewLine("*** Showing Books ***");
+        IMenuWithMock.printSelection("1");
+        verify(mockIPrompter).printWithNewLine("*** Showing Books ***");
     }
 
     @Test
     public void cannot_Choose_Invalid_Option() {
-        menuWithMock.printSelection("10");
-        verify(mockPrompter).printWithNewLine("Please Select a Valid Option!");
+        IMenuWithMock.printSelection("10");
+        verify(mockIPrompter).printWithNewLine("Please Select a Valid Option!");
     }
 
     @Test
     public void quit_biblioteca_when_q_input() {
-        menuWithMock.printSelection("q");
-        verify(mockPrompter).printWithNewLine("*** Thanks for using Biblioteca ***");
+        IMenuWithMock.printSelection("q");
+        verify(mockIPrompter).printWithNewLine("*** Thanks for using Biblioteca ***");
     }
 
     @Test
     public void callsCheckoutBookFunction() {
-        menuWithMock.printSelection("2");
-        verify(mockPrompter).print("Enter name of Book to borrow: ");
+        IMenuWithMock.printSelection("2");
+        verify(mockIPrompter).print("Enter name of Book to borrow: ");
     }
 
     @Test
     public void callsReturnBookFunction() {
-        menuWithMock.printSelection("3");
-        verify(mockPrompter).print("Enter name of Book to return: ");
+        IMenuWithMock.printSelection("3");
+        verify(mockIPrompter).print("Enter name of Book to return: ");
     }
 }

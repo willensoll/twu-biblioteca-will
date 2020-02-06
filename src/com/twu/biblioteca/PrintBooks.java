@@ -4,19 +4,21 @@ import java.util.ArrayList;
 
 public class PrintBooks {
 
-    private Prompter _prompter;
+    private IPrompter _I_prompter;
     private ArrayList<Book> _bookList;
 
-    PrintBooks(Prompter prompter, ArrayList bookList) {
-        _prompter = prompter;
+    PrintBooks(IPrompter IPrompter, ArrayList bookList) {
+        _I_prompter = IPrompter;
         _bookList = bookList;
     }
 
     public void run() {
-        _prompter.printWithNewLine("*** Showing Books ***");
-        _prompter.printWithNewLine("*** Name | Author | Publish Date ***");
+        _I_prompter.printWithNewLine("*** Showing Books ***");
+        _I_prompter.printWithNewLine("*** Name | Author | Publish Date ***");
         for (Book book: _bookList) {
-            _prompter.printWithNewLine(book.toListing());
+            if (book.getAvailability()) {
+                _I_prompter.printWithNewLine(book.toListing());
+            }
         }
     }
 }

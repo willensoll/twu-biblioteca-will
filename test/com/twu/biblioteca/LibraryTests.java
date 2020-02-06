@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 public class LibraryTests {
 
     private Library library;
-    private Prompter prompterMock;
+    private IPrompter IPrompterMock;
     private Book testBook;
     private Book testBook2;
     ArrayList<Book> bookList;
@@ -20,14 +20,14 @@ public class LibraryTests {
     @Before
     public void initBooksTests () {
 
-        prompterMock = mock(Prompter.class);
+        IPrompterMock = mock(Prompter.class);
         bookList = new ArrayList<>();
 
         testBook = new Book("Catcher in the Rye", "J D Salinger", 1951);
         testBook2 = new Book("Sum", "David Eagleman", 2009);
         bookList.add(testBook);
         bookList.add(testBook2);
-        library = new Library(prompterMock, bookList);
+        library = new Library(IPrompterMock, bookList);
 
     }
 
@@ -39,14 +39,6 @@ public class LibraryTests {
     @Test
     public void validate_book_req_returns_true_if_book_found_in_available_list() throws InvalidNameException {
         Book test = library.validateBookRequest("Catcher in the Rye", library.availableBookList);
-        assertThat(test, is(testBook));
-    }
-
-
-    @Test
-    public void validate_book_req_returns_true_if_book_found_in_checkedOut_list() throws InvalidNameException {
-        library.amendBookAvailabilityAfterCheckout(testBook);
-        Book test = library.validateBookRequest("Catcher in the Rye", library.checkedOutBookList);
         assertThat(test, is(testBook));
     }
 
@@ -67,64 +59,33 @@ public class LibraryTests {
     }
 
     @Test
-    public void checkout_book_removes_book_from_available_list() {
-        library.amendBookAvailabilityAfterCheckout(testBook);
-        assertThat(library.availableBookList.size(), is(1));
-    }
-
-    @Test
-    public void checkout_book_adds_book_to_checkedOut_list() {
-        library.amendBookAvailabilityAfterCheckout(testBook);
-        assertThat(library.checkedOutBookList.size(), is(1));
-    }
-
-    @Test
     public void successful_checkout_prints_correct_messages() {
-        when(prompterMock.readInput()).thenReturn("Catcher in the rye");
+        when(IPrompterMock.readInput()).thenReturn("Catcher in the rye");
         library.checkOut();
-        verify(prompterMock).printWithNewLine("Thank you! Enjoy the book");
+        verify(IPrompterMock).printWithNewLine("Thank you! Enjoy the book");
     }
 
     @Test
     public void unsuccessful_checkout_prints_correct_messages() {
-        when(prompterMock.readInput()).thenReturn("Will");
+        when(IPrompterMock.readInput()).thenReturn("Will");
         library.checkOut();
-        verify(prompterMock).printWithNewLine("*** Sorry, that book is not available ***");
-    }
-
-    @Test
-    public void return_book_removes_book_from_checkedOut_list()
-    {
-        library.amendBookAvailabilityAfterCheckout(testBook);
-        assertThat(library.availableBookList.size(), is(1));
-        library.amendBookAvailabilityAfterReturn(testBook);
-        assertThat(library.checkedOutBookList.size(), is(0));
+        verify(IPrompterMock).printWithNewLine("*** Sorry, that book is not available ***");
     }
 
 
-    @Test
-    public void return_book_removes_adds_into_avail_list()
-    {
-        library.amendBookAvailabilityAfterCheckout(testBook);
-        assertThat(library.availableBookList.size(), is(1));
-        library.amendBookAvailabilityAfterReturn(testBook);
-        assertThat(library.checkedOutBookList.size(), is(0));
-        assertThat(library.availableBookList.size(), is(2));
-
-    }
 
     @Test
     public void successful_return_prints_correct_messages() {
         library.amendBookAvailabilityAfterCheckout(testBook);
-        when(prompterMock.readInput()).thenReturn("Catcher in the rye");
+        when(IPrompterMock.readInput()).thenReturn("Catcher in the rye");
         library.returnBooks();
-        verify(prompterMock).printWithNewLine("Thank you for returning the book");
+        verify(IPrompterMock).printWithNewLine("Thank you for returning the book");
     }
 
     @Test
     public void unsuccessful_return_prints_correct_messages() {
-        when(prompterMock.readInput()).thenReturn("Will");
+        when(IPrompterMock.readInput()).thenReturn("Will");
         library.returnBooks();
-        verify(prompterMock).printWithNewLine("*** That is not a valid book to return ***");
+        verify(IPrompterMock).printWithNewLine("*** That is not a valid book to return ***");
     }
 }

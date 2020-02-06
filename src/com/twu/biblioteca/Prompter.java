@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class Prompter {
+public class Prompter implements IPrompter {
 
     private Scanner sc;
     private PrintStream _outputStream;
@@ -13,14 +13,17 @@ public class Prompter {
         _outputStream = outputStream;
     }
 
+    @Override
     public void printWithNewLine(String message) {
         _outputStream.println(message);
     }
 
+    @Override
     public void print(String message) {
         _outputStream.print(message);
     }
 
+    @Override
     public String readInput() {
         String s = sc.nextLine();
         return s;

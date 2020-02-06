@@ -39,11 +39,10 @@ public class BookTests {
     }
 
     @Test
-    public void book_has_isAvailable_boolea_defaults_to_true() { assertThat(testBook.getAvailability(), is(true)); }
+    public void book_has_isAvailable_boolean_defaults_to_true() { assertThat(testBook.getAvailability(), is(true)); }
 
     @Test
     public void setAvailability_alters_books_boolean() {
-        assertThat(testBook.setAvailability(), is(false));
+        assertThat(testBook.setAvailability(false), is(false));
     }
-
 };

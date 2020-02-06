@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-
 public class Book {
 
     private String name;
@@ -35,9 +34,8 @@ public class Book {
         return isAvailable;
     }
 
-    public Boolean setAvailability() {
-        isAvailable = !isAvailable;
+    public Boolean setAvailability(Boolean bool) {
+        isAvailable = bool;
         return isAvailable;
     }
-
 }
