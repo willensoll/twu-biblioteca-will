@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.classes;
+
+import com.twu.biblioteca.interfaces.IPrompter;
 
 import java.io.PrintStream;
 import java.util.Scanner;

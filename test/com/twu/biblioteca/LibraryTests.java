@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.classes.Book;
+import com.twu.biblioteca.classes.Library;
+import com.twu.biblioteca.classes.Prompter;
+import com.twu.biblioteca.interfaces.IPrompter;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,25 +41,34 @@ public class LibraryTests {
         assertThat(2, is(test.size()));    }
 
     @Test
-    public void validate_book_req_returns_true_if_book_found_in_available_list() throws InvalidNameException {
-        Book test = library.validateBookRequest("Catcher in the Rye", library.availableBookList);
+    public void validate_book_req_returns_true_if_book_found_and_available() throws InvalidNameException {
+        Book test = library.validateBookRequest("Catcher in the Rye", true);
         assertThat(test, is(testBook));
     }
 
     @Test
-    public void validate_book_req_returns_true_if_book_found_in_list_ignores_case() throws InvalidNameException {
-        Book test = library.validateBookRequest("CATCHer in the rYe", library.availableBookList);
+    public void validate_book_req_returns_true_if_book_found_and_available_ignores_case() throws InvalidNameException {
+        Book test = library.validateBookRequest("CATCHer in the rYe", true);
         assertThat(test, is(testBook));
     }
 
     @Test(expected = InvalidNameException.class)
     public void validate_book_req_throws_error_if_book_not_found_in_list() throws InvalidNameException {
-        library.validateBookRequest("The world according to Will", library.availableBookList);
+        library.validateBookRequest("The world according to Will", true);
     }
 
-    @Test
-    public void checkedOut_list_starts_at_0() {
-        assertThat(library.checkedOutBookList.size(), is(0));
+    @Test(expected = InvalidNameException.class)
+    public void validate_book_req_throws_error_if_book_already_checked_out() throws InvalidNameException {
+        when(IPrompterMock.readInput()).thenReturn("Catcher in the rye");
+        library.checkOut();
+        library.validateBookRequest("Catcher in the Rye", true);
+    }
+
+    @Test(expected = InvalidNameException.class)
+    public void validate_book_req_throws_error_if_book_already_available() throws InvalidNameException {
+        when(IPrompterMock.readInput()).thenReturn("Catcher in the rye");
+        library.returnBooks();
+        library.validateBookRequest("Catcher in the Rye", false);
     }
 
     @Test
@@ -71,8 +84,6 @@ public class LibraryTests {
         library.checkOut();
         verify(IPrompterMock).printWithNewLine("*** Sorry, that book is not available ***");
     }
-
-
 
     @Test
     public void successful_return_prints_correct_messages() {

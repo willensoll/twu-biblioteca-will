@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.classes.Book;
+import com.twu.biblioteca.classes.PrintBooks;
+import com.twu.biblioteca.interfaces.IPrompter;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import static org.mockito.Mockito.*;
 
 public class PrintBooksTests {
 
-    private  Book testBook1;
+    private Book testBook1;
     private  Book testBook2;
     private IPrompter IPrompterMock;
     ArrayList<Book> bookList;

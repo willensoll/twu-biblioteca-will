@@ -1,4 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.classes;
+
+import com.twu.biblioteca.interfaces.IMenu;
+import com.twu.biblioteca.interfaces.IPrompter;
 
 public class App {
 
@@ -6,7 +9,7 @@ public class App {
     private IMenu _I_menu;
 
 
-    App(IPrompter IPrompter, IMenu IMenu) {
+    public App(IPrompter IPrompter, IMenu IMenu) {
         _I_prompter = IPrompter;
         _I_menu = IMenu;
     }

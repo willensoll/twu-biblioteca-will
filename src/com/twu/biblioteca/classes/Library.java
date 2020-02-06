@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.classes;
+
+import com.twu.biblioteca.interfaces.IPrompter;
 
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
@@ -6,12 +8,10 @@ import java.util.ArrayList;
 public class Library {
 
     public ArrayList<Book> availableBookList;
-    public ArrayList<Book> checkedOutBookList;
     private IPrompter _I_prompter;
 
     public Library(IPrompter IPrompter, ArrayList bookList) {
         availableBookList = bookList;
-        checkedOutBookList = new ArrayList<>();
         _I_prompter = IPrompter;
     }
 
@@ -23,7 +23,7 @@ public class Library {
         _I_prompter.print("Enter name of Book to borrow: ");
         String itemToCheckOut = _I_prompter.readInput();
         try {
-            Book book = validateBookRequest(itemToCheckOut, availableBookList);
+            Book book = validateBookRequest(itemToCheckOut, true);
             amendBookAvailabilityAfterCheckout(book);
             _I_prompter.printWithNewLine("Thank you! Enjoy the book");
         } catch (InvalidNameException exception) {
@@ -35,7 +35,7 @@ public class Library {
         _I_prompter.print("Enter name of Book to return: ");
         String itemToCheckOut = _I_prompter.readInput();
         try {
-            Book book = validateBookRequest(itemToCheckOut, availableBookList);
+            Book book = validateBookRequest(itemToCheckOut, false);
             amendBookAvailabilityAfterReturn(book);
             _I_prompter.printWithNewLine("Thank you for returning the book");
 
@@ -52,9 +52,9 @@ public class Library {
         book.setAvailability(true);
     }
 
-    public Book validateBookRequest(String bookName, ArrayList<Book> bookList) throws InvalidNameException {
-        for (Book book: bookList) {
-            if (book.getName().equalsIgnoreCase(bookName)) {
+    public Book validateBookRequest(String bookName, Boolean availableStatus) throws InvalidNameException {
+        for (Book book: availableBookList) {
+            if (book.getName().equalsIgnoreCase(bookName) && book.getAvailability().equals(availableStatus)) {
                 return book;
             }
         }

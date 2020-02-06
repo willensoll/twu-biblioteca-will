@@ -1,4 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.classes;
+
+import com.twu.biblioteca.interfaces.IMenu;
+import com.twu.biblioteca.interfaces.IPrompter;
 
 import java.util.ArrayList;
 
@@ -9,7 +12,7 @@ public class Menu implements IMenu {
     private ArrayList<Book> _bookList;
     private Library _library;
 
-    Menu(IPrompter IPrompter, ArrayList bookList) {
+    public Menu(IPrompter IPrompter, ArrayList bookList) {
         _I_prompter = IPrompter;
         _appInitialised = true;
         _bookList = bookList;

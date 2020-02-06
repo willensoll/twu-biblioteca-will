@@ -1,5 +1,10 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.classes.App;
+import com.twu.biblioteca.classes.Menu;
+import com.twu.biblioteca.classes.Prompter;
+import com.twu.biblioteca.interfaces.IMenu;
+import com.twu.biblioteca.interfaces.IPrompter;
 import org.junit.Before;
 import org.junit.Test;
 

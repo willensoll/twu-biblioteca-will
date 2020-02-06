@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.classes;
+
+import com.twu.biblioteca.interfaces.IPrompter;
 
 import java.util.ArrayList;
 
@@ -7,7 +9,7 @@ public class PrintBooks {
     private IPrompter _I_prompter;
     private ArrayList<Book> _bookList;
 
-    PrintBooks(IPrompter IPrompter, ArrayList bookList) {
+    public PrintBooks(IPrompter IPrompter, ArrayList bookList) {
         _I_prompter = IPrompter;
         _bookList = bookList;
     }
