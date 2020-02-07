@@ -18,7 +18,7 @@ public class PrintBooks {
         _I_prompter.printWithNewLine("*** Showing Books ***");
         _I_prompter.printWithNewLine("*** Name | Author | Publish Date ***");
         for (Book book: _bookList) {
-            if (book.getAvailability()) {
+            if (book.getAvailable()) {
                 _I_prompter.printWithNewLine(book.toListing());
             }
         }

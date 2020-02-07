@@ -27,7 +27,7 @@ public class Menu implements IMenu {
             _I_prompter.printWithNewLine("2 - Check out Book");
             _I_prompter.printWithNewLine("3 - Return a book");
             _I_prompter.printWithNewLine("Q - Quit Biblioteca");
-            _I_prompter.print("Please select an option by number: ");
+            _I_prompter.print("Please select an option by key: ");
             String selection = _I_prompter.readInput();
             printSelection(selection);
         }

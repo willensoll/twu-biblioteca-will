@@ -1,21 +1,17 @@
 package com.twu.biblioteca.classes;
 
-public class Book {
+public class Book extends LibraryItem {
 
     private String name;
     private String author;
     private int publishYear;
-    private Boolean isAvailable;
 
     public Book(String n, String a, int py) {
-        name = n;
-        author = a;
-        publishYear = py;
-        isAvailable = true;
-    }
+        super(n,  a,  py);
 
-    public String toListing () {
-        return name + " | " + author + " | " + publishYear;
+         name = super.getName();
+         author = super.getAuthor();
+         publishYear = super.getPublishYear();
     }
 
     public String getName() {
@@ -30,12 +26,4 @@ public class Book {
         return publishYear;
     }
 
-    public Boolean getAvailability() {
-        return isAvailable;
-    }
-
-    public Boolean setAvailability(Boolean bool) {
-        isAvailable = bool;
-        return isAvailable;
-    }
 }

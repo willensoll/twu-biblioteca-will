@@ -54,7 +54,7 @@ public class Library {
 
     public Book validateBookRequest(String bookName, Boolean availableStatus) throws InvalidNameException {
         for (Book book: availableBookList) {
-            if (book.getName().equalsIgnoreCase(bookName) && book.getAvailability().equals(availableStatus)) {
+            if (book.getName().equalsIgnoreCase(bookName) && book.getAvailable().equals(availableStatus)) {
                 return book;
             }
         }
