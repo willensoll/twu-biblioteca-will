@@ -32,4 +32,10 @@ public class MovieTests {
     public void movie_has_star_rating_value() {
         assertThat(testMovie.getStarRating(), is("4.7"));
     }
+
+    @Test
+    public void toListing_returns_book_in_correct_format() {
+        String test = testMovie.toListing();
+        assertThat(test, is("Up | Pete Docter | 2009 | 4.7"));
+    }
 }

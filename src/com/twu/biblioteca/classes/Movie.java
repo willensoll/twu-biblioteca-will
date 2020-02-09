@@ -31,4 +31,9 @@ public class Movie extends LibraryItem {
     public String getStarRating() {
         return starRating;
     }
+
+    @Override
+    public String toListing() {
+        return name + " | " + author + " | " + publishYear + " | " + starRating;
+    }
 }

@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.classes.Book;
+import com.twu.biblioteca.classes.LibraryItem;
 import com.twu.biblioteca.classes.Menu;
 import com.twu.biblioteca.classes.Prompter;
 import com.twu.biblioteca.interfaces.IMenu;
@@ -21,14 +22,20 @@ public class MenuTests {
     @Before
     public void setUpMenuTests() {
         mockIPrompter = mock(Prompter.class);
-        ArrayList mockBookList = new ArrayList<Book>();
-        IMenuWithMock = new Menu(mockIPrompter, mockBookList);
+        ArrayList mockList = new ArrayList<LibraryItem>();
+        IMenuWithMock = new Menu(mockIPrompter, mockList, mockList);
     }
 
     @Test
     public void list_of_book_shown_when_selected_on_menu() {
         IMenuWithMock.printSelection("1");
         verify(mockIPrompter).printWithNewLine("*** Showing Books ***");
+    }
+
+    @Test
+    public void list_of_movie_shown_when_selected_on_menu() {
+        IMenuWithMock.printSelection("4");
+        verify(mockIPrompter).printWithNewLine("*** Showing Movies ***");
     }
 
     @Test

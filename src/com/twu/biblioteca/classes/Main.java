@@ -19,7 +19,7 @@ public class Main {
         movieList.add(new Movie("Train to Busan", "Yeon Sang-ho", 2016, "4.9"));
         movieList.add(new Movie("Gladiator", "Ridley Scott", 2000, "4.8"));
 
-        IMenu IMenu = new Menu(IPrompter, bookList);
+        IMenu IMenu = new Menu(IPrompter, bookList, movieList);
         App app = new App(IPrompter, IMenu);
         app.start();
     }
