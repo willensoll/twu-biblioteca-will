@@ -4,6 +4,7 @@ import com.twu.biblioteca.classes.*;
 import com.twu.biblioteca.interfaces.IPrompter;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import javax.naming.InvalidNameException;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class LibraryActionTests {
 
@@ -19,12 +20,13 @@ public class LibraryActionTests {
     private Book testBook;
     private Book testBook2;
     ArrayList<Book> bookList;
+    private IPrompter IPrompterMock;
 
     @Before
     public void initBooksTests () {
 
         bookList = new ArrayList<>();
-
+        IPrompterMock =  mock(IPrompter.class);
         testBook = new Book("Catcher in the Rye", "J D Salinger", 1951);
         testBook2 = new Book("Sum", "David Eagleman", 2009);
         bookList.add(testBook);
@@ -48,4 +50,20 @@ public class LibraryActionTests {
     public void validate_item_req_throws_error_if_book_not_found_in_list() throws InvalidNameException {
         _libraryAction.validateItemRequest("The world according to Will", true);
     }
+
+    @Test
+    public void checkout_sets_item_avail_to_false() {
+        _libraryAction.amendItemAvailabilityAfterCheckout(testBook);
+        assertThat(testBook.getAvailable(), is(false));
+
+    }
+
+    @Test
+    public void return_item_sets_avail_to_true() {
+        _libraryAction.amendItemAvailabilityAfterCheckout(testBook);
+        assertThat(testBook.getAvailable(), is(false));
+        _libraryAction.amendItemAvailabilityAfterReturn(testBook);
+        assertThat(testBook.getAvailable(), is(true));
+    }
+
 }

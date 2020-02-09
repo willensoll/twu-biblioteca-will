@@ -11,7 +11,6 @@ public class LibraryAction {
     _itemList = itemList;
     }
 
-
     public LibraryItem validateItemRequest(String itemName, Boolean availableStatus) throws InvalidNameException {
         for (LibraryItem item: _itemList) {
             if (item.getName().equalsIgnoreCase(itemName) && item.getAvailable().equals(availableStatus)) {
@@ -19,5 +18,13 @@ public class LibraryAction {
             }
         }
         throw new InvalidNameException();
+    }
+
+    public void amendItemAvailabilityAfterCheckout(LibraryItem item) {
+        item.setAvailability(false);
+    }
+
+    public void amendItemAvailabilityAfterReturn(Book book) {
+        book.setAvailability(true);
     }
 }
