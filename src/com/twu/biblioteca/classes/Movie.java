@@ -4,8 +4,6 @@ public class Movie extends LibraryItem {
     private String name;
     private String author;
     private int publishYear;
-
-
     private String starRating;
 
     public Movie(String n, String a, int py, String sr) {

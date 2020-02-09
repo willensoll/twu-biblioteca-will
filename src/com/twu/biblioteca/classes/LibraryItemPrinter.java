@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class LibraryItemPrinter {
 
     private IPrompter _I_prompter;
-    private ArrayList<Book> _itemList;
+    private ArrayList<LibraryItem> _itemList;
 
     public LibraryItemPrinter(IPrompter IPrompter, ArrayList itemList) {
         _I_prompter = IPrompter;

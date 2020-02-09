@@ -18,7 +18,6 @@ public class Menu implements IMenu {
         _I_prompter = IPrompter;
         _appInitialised = true;
         _bookList = bookList;
-        _library = new Library(_I_prompter, _bookList);
         _movieList = movieList;
     }
 
@@ -46,9 +45,11 @@ public class Menu implements IMenu {
                 _libraryItemPrinter.run();
                 break;
             case "2":
+                _library = new Library(_I_prompter, _bookList);
                 _library.checkOut();
                 break;
             case "3":
+                _library = new Library(_I_prompter, _bookList);
                 _library.returnBooks();
                 break;
             case "4":
@@ -57,6 +58,9 @@ public class Menu implements IMenu {
                 _I_prompter.printWithNewLine("*** Name | Director | Publish Date ***");
                 _libraryItemPrinter.run();
                 break;
+            case "5":
+                _library = new Library(_I_prompter, _movieList);
+                _library.checkOut();
             case "Q":
                 quit();
                 break;

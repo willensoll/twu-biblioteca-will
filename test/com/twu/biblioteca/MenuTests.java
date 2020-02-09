@@ -33,12 +33,6 @@ public class MenuTests {
     }
 
     @Test
-    public void list_of_movie_shown_when_selected_on_menu() {
-        IMenuWithMock.printSelection("4");
-        verify(mockIPrompter).printWithNewLine("*** Showing Movies ***");
-    }
-
-    @Test
     public void cannot_Choose_Invalid_Option() {
         IMenuWithMock.printSelection("10");
         verify(mockIPrompter).printWithNewLine("Please Select a Valid Option!");
@@ -60,5 +54,17 @@ public class MenuTests {
     public void callsReturnBookFunction() {
         IMenuWithMock.printSelection("3");
         verify(mockIPrompter).print("Enter name of Book to return: ");
+    }
+
+    @Test
+    public void list_of_movie_shown_when_selected_on_menu() {
+        IMenuWithMock.printSelection("4");
+        verify(mockIPrompter).printWithNewLine("*** Showing Movies ***");
+    }
+
+    @Test
+    public void callsCheckoutMovieFunction() {
+        IMenuWithMock.printSelection("5");
+        verify(mockIPrompter).print("Enter name of Book to borrow: ");
     }
 }

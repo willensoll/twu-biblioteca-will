@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.classes.Book;
 import com.twu.biblioteca.classes.Library;
+import com.twu.biblioteca.classes.LibraryItem;
 import com.twu.biblioteca.classes.Prompter;
 import com.twu.biblioteca.interfaces.IPrompter;
 import org.junit.Before;
@@ -42,13 +43,13 @@ public class LibraryTests {
 
     @Test
     public void validate_book_req_returns_true_if_book_found_and_available() throws InvalidNameException {
-        Book test = library.validateBookRequest("Catcher in the Rye", true);
+        LibraryItem test = library.validateBookRequest("Catcher in the Rye", true);
         assertThat(test, is(testBook));
     }
 
     @Test
     public void validate_book_req_returns_true_if_book_found_and_available_ignores_case() throws InvalidNameException {
-        Book test = library.validateBookRequest("CATCHer in the rYe", true);
+        LibraryItem test = library.validateBookRequest("CATCHer in the rYe", true);
         assertThat(test, is(testBook));
     }
 

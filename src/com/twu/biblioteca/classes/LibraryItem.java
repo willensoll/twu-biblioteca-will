@@ -12,7 +12,6 @@ public class LibraryItem {
         author = a;
         publishYear = py;
         isAvailable = true;
-
     }
 
     public String getAuthor() {
