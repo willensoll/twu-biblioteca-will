@@ -5,7 +5,7 @@ import com.twu.biblioteca.interfaces.IPrompter;
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
 
-public class ReturnItem extends LibraryAction {
+public class ReturnItem extends LibraryItemAction {
 
     private IPrompter _I_prompter;
     private String _itemName;

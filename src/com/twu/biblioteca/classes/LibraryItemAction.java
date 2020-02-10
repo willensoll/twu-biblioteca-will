@@ -3,11 +3,11 @@ package com.twu.biblioteca.classes;
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
 
-public class LibraryAction {
+public class LibraryItemAction {
 
     private ArrayList<LibraryItem> _itemList;
 
-    public LibraryAction(ArrayList itemList) {
+    public LibraryItemAction(ArrayList itemList) {
     _itemList = itemList;
     }
 

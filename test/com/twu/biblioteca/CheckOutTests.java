@@ -2,23 +2,20 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.classes.Book;
 import com.twu.biblioteca.classes.CheckOutItem;
-import com.twu.biblioteca.classes.Prompter;
 import com.twu.biblioteca.interfaces.IPrompter;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
-
 import static org.mockito.Mockito.*;
 
-public class checkOutTests {
+
+public class CheckOutTests {
 
     private CheckOutItem _checkOutItem;
     private IPrompter IPrompterMock;
     private ArrayList itemList;
     private Book testBook;
     private Book testBook2;
-
 
 
     @Before
@@ -37,7 +34,6 @@ public class checkOutTests {
         when(IPrompterMock.readInput()).thenReturn("Catcher in the rye");
         _checkOutItem.checkOut();
         verify(IPrompterMock).printWithNewLine("Thank you! Enjoy the book");
-
     }
 
     @Test

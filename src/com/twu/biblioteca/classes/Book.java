@@ -8,7 +8,6 @@ public class Book extends LibraryItem {
 
     public Book(String n, String a, int py) {
         super(n,  a,  py);
-
          name = super.getName();
          author = super.getAuthor();
          publishYear = super.getPublishYear();

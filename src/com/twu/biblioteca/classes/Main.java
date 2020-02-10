@@ -10,6 +10,7 @@ public class Main {
         IPrompter IPrompter = new Prompter(System.out, new Scanner(System.in));
         ArrayList<Book> bookList = new ArrayList();
         ArrayList<Movie> movieList = new ArrayList();
+        ArrayList<User> userList = new ArrayList();
 
         bookList.add(new Book("Catcher in the Rye", "J D Salinger", 1951));
         bookList.add(new Book("Ready Player One", "Ernest Cline", 2011));
@@ -19,7 +20,11 @@ public class Main {
         movieList.add(new Movie("Train to Busan", "Yeon Sang-ho", 2016, "4.9"));
         movieList.add(new Movie("Gladiator", "Ridley Scott", 2000, "4.8"));
 
-        IMenu IMenu = new Menu(IPrompter, bookList, movieList);
+        userList.add(new User("123-4567", "password"));
+        userList.add(new User("098-7654", "password"));
+
+
+        IMenu IMenu = new Menu(IPrompter, bookList, movieList, userList);
         App app = new App(IPrompter, IMenu);
         app.start();
     }

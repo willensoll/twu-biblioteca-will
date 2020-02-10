@@ -1,15 +1,11 @@
 package com.twu.biblioteca.classes;
-
 import com.twu.biblioteca.interfaces.IPrompter;
-
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
 
-public class CheckOutItem extends LibraryAction {
-
+public class CheckOutItem extends LibraryItemAction {
     private IPrompter _I_prompter;
     private String _itemName;
-
 
     public CheckOutItem(IPrompter prompter, ArrayList itemList, String itemType) {
         super(itemList);
@@ -18,7 +14,7 @@ public class CheckOutItem extends LibraryAction {
     }
 
     public void checkOut() {
-        _I_prompter.print("Enter name of "+ _itemName +" to borrow: ");
+        _I_prompter.print("Enter name of " + _itemName + " to borrow: ");
         String itemToCheckOut = _I_prompter.readInput();
         try {
             LibraryItem item = super.validateItemRequest(itemToCheckOut, true);
@@ -28,6 +24,4 @@ public class CheckOutItem extends LibraryAction {
             _I_prompter.printWithNewLine("*** Sorry, that " + _itemName + " is not available ***");
         }
     }
-
-
 }

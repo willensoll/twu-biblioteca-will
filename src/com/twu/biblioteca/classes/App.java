@@ -14,18 +14,12 @@ public class App {
         _I_menu = IMenu;
     }
 
-
-
     public void start() {
         printWelcome();
             _I_menu.initMenu();
     }
 
-
-
     private void printWelcome() {
         _I_prompter.printWithNewLine("Welcome to Biblioteca, your one-stop-shop for great book titles in Bangalore!");
     }
-
-
 }
