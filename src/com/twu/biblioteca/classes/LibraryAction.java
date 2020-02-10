@@ -24,7 +24,7 @@ public class LibraryAction {
         item.setAvailability(false);
     }
 
-    public void amendItemAvailabilityAfterReturn(Book book) {
-        book.setAvailability(true);
+    public void amendItemAvailabilityAfterReturn(LibraryItem item) {
+        item.setAvailability(true);
     }
 }

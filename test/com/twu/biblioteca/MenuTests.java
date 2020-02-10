@@ -47,13 +47,13 @@ public class MenuTests {
     @Test
     public void callsCheckoutBookFunction() {
         IMenuWithMock.printSelection("2");
-        verify(mockIPrompter).print("Enter name of Book to borrow: ");
+        verify(mockIPrompter).print("Enter name of book to borrow: ");
     }
 
     @Test
     public void callsReturnBookFunction() {
         IMenuWithMock.printSelection("3");
-        verify(mockIPrompter).print("Enter name of Book to return: ");
+        verify(mockIPrompter).print("Enter name of book to return: ");
     }
 
     @Test
@@ -65,6 +65,6 @@ public class MenuTests {
     @Test
     public void callsCheckoutMovieFunction() {
         IMenuWithMock.printSelection("5");
-        verify(mockIPrompter).print("Enter name of Book to borrow: ");
+        verify(mockIPrompter).print("Enter name of movie to borrow: ");
     }
 }

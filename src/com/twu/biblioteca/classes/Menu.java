@@ -11,7 +11,8 @@ public class Menu implements IMenu {
     private Boolean _appInitialised;
     private ArrayList<Book> _bookList;
     private ArrayList<Movie> _movieList;
-    private Library _library;
+    private ReturnItem _returnItem;
+    private CheckOutItem _checkoutItem;
     private LibraryItemPrinter _libraryItemPrinter;
 
     public Menu(IPrompter IPrompter, ArrayList bookList, ArrayList movieList) {
@@ -29,6 +30,7 @@ public class Menu implements IMenu {
             _I_prompter.printWithNewLine("2 - Check out Book");
             _I_prompter.printWithNewLine("3 - Return a book");
             _I_prompter.printWithNewLine("4 - List of Movies");
+            _I_prompter.printWithNewLine("5 - Check out Movie");
             _I_prompter.printWithNewLine("Q - Quit Biblioteca");
             _I_prompter.print("Please select an option by key: ");
             String selection = _I_prompter.readInput();
@@ -45,22 +47,23 @@ public class Menu implements IMenu {
                 _libraryItemPrinter.run();
                 break;
             case "2":
-                _library = new Library(_I_prompter, _bookList);
-                _library.checkOut();
+                _checkoutItem = new CheckOutItem(_I_prompter, _bookList, "book");
+                _checkoutItem.checkOut();
                 break;
             case "3":
-                _library = new Library(_I_prompter, _bookList);
-                _library.returnBooks();
+                _returnItem = new ReturnItem(_I_prompter, _bookList, "book");
+                _returnItem.returnItem();
                 break;
             case "4":
                 _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _movieList);
                 _I_prompter.printWithNewLine("*** Showing Movies ***");
-                _I_prompter.printWithNewLine("*** Name | Director | Publish Date ***");
+                _I_prompter.printWithNewLine("*** Name | Director | Publish Date | Star Rating ***");
                 _libraryItemPrinter.run();
                 break;
             case "5":
-                _library = new Library(_I_prompter, _movieList);
-                _library.checkOut();
+                _checkoutItem = new CheckOutItem(_I_prompter, _movieList, "movie");
+                _checkoutItem.checkOut();
+                break;
             case "Q":
                 quit();
                 break;

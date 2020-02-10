@@ -8,15 +8,12 @@ import java.util.ArrayList;
 public class CheckOutItem extends LibraryAction {
 
     private IPrompter _I_prompter;
-    private ArrayList<LibraryItem> _itemList;
-    private IPrompter IPrompterMock;
     private String _itemName;
 
 
     public CheckOutItem(IPrompter prompter, ArrayList itemList, String itemType) {
         super(itemList);
         _I_prompter = prompter;
-        _itemList = itemList;
         _itemName = itemType;
     }
 
