@@ -3,14 +3,17 @@ import com.twu.biblioteca.interfaces.IPrompter;
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
 
-public class UserLogin {
+public class Auth {
 
     private IPrompter _prompter;
+    private Boolean _authenticated;
     public ArrayList<User> _userList;
 
-    public UserLogin(IPrompter prompter, ArrayList userList) {
+
+    public Auth(IPrompter prompter, ArrayList userList) {
         _prompter = prompter;
         _userList = userList;
+        _authenticated = false;
     }
 
     public void run() {
@@ -27,6 +30,7 @@ public class UserLogin {
         for (User user: _userList) {
             if (libNum.equals(user.getLibraryNumber()) && pw.equals(user.getPassword())) {
                 user.login();
+                _authenticated = true;
                 return user;
             }
         }
@@ -39,6 +43,11 @@ public class UserLogin {
     }
 
     public String getPassword() {
-        return _prompter.readPassword();
+        _prompter.print("Password: ");
+        return _prompter.readInput();
+    }
+
+    public Boolean getAuthenticated() {
+        return _authenticated;
     }
 }

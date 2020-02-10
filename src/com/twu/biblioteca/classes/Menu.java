@@ -5,19 +5,18 @@ import com.twu.biblioteca.interfaces.IPrompter;
 
 import java.util.ArrayList;
 
-public class Menu implements IMenu {
+public class Menu extends Auth implements IMenu {
 
     private IPrompter _I_prompter;
     private Boolean _appInitialised;
     private ArrayList<Book> _bookList;
     private ArrayList<Movie> _movieList;
-    private ArrayList<User> _userList;
     private ReturnItem _returnItem;
     private CheckOutItem _checkoutItem;
     private LibraryItemPrinter _libraryItemPrinter;
-    private UserLogin _userLogin;
 
     public Menu(IPrompter IPrompter, ArrayList bookList, ArrayList movieList, ArrayList userList) {
+        super(IPrompter, userList);
         _I_prompter = IPrompter;
         _appInitialised = true;
         _bookList = bookList;
@@ -26,32 +25,47 @@ public class Menu implements IMenu {
 
     }
 
-    @Override
     public void initMenu() {
         while (_appInitialised) {
-            _I_prompter.printWithNewLine("*** Main Menu ***");
-            _I_prompter.printWithNewLine("1 - Login");
-            _I_prompter.printWithNewLine("2 - List of Books");
-            _I_prompter.printWithNewLine("3 - Check out Book");
-            _I_prompter.printWithNewLine("4 - Return a book");
-            _I_prompter.printWithNewLine("5 - List of Movies");
-            _I_prompter.printWithNewLine("6 - Check out Movie");
-            _I_prompter.printWithNewLine("Q - Quit Biblioteca");
-            _I_prompter.print("Please select an option by key: ");
-            String selection = _I_prompter.readInput();
-            printSelection(selection);
+            if (super.getAuthenticated()) {
+                initAuthMenu();
+            } else {
+                initUnAuthMenu();
+            }
         }
     }
 
-    @Override
+    private void initUnAuthMenu() {
+        _I_prompter.printWithNewLine("*** Main Menu ***");
+        _I_prompter.printWithNewLine("1 - Login");
+        _I_prompter.printWithNewLine("2 - List of Books");
+        _I_prompter.printWithNewLine("5 - List of Movies");
+        _I_prompter.printWithNewLine("Q - Quit Biblioteca");
+        _I_prompter.print("Please select an option by key: ");
+        String selection = _I_prompter.readInput();
+        printSelection(selection);
+    }
+
+    private void initAuthMenu() {
+        _I_prompter.printWithNewLine("*** Main Menu ***");
+        _I_prompter.printWithNewLine("2 - List of Books");
+        _I_prompter.printWithNewLine("3 - Check out Book");
+        _I_prompter.printWithNewLine("4 - Return a book");
+        _I_prompter.printWithNewLine("5 - List of Movies");
+        _I_prompter.printWithNewLine("6 - Check out Movie");
+        _I_prompter.printWithNewLine("Q - Quit Biblioteca");
+        _I_prompter.print("Please select an option by key: ");
+        String selection = _I_prompter.readInput();
+        printSelection(selection);
+    }
+
     public void printSelection(String selection) {
         switch (selection.toUpperCase()) {
             case "1":
-                _userLogin = new UserLogin(_I_prompter, _userList);
-                _userLogin.run();
+                super.run();
                 break;
             case "2":
-                 _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _bookList);
+                _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _bookList);
                 _I_prompter.printWithNewLine("*** Showing Books ***");
                 _libraryItemPrinter.run();
                 break;
@@ -81,7 +95,6 @@ public class Menu implements IMenu {
         }
     }
 
-    @Override
     public void quit() {
         _I_prompter.printWithNewLine("*** Thanks for using Biblioteca ***");
         _appInitialised = false;

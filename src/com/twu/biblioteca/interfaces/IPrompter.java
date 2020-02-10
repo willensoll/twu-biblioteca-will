@@ -6,6 +6,4 @@ public interface IPrompter {
     void print(String message);
 
     String readInput();
-
-    String readPassword();
 }
