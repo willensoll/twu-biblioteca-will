@@ -40,4 +40,10 @@ public class LibraryItemTests {
         assertThat(testLibraryItem.getCheckedOutBy(), is("will"));
     }
 
+    @Test
+    public void toListing_returns_book_in_correct_format() {
+        String test = testLibraryItem.toListing();
+        assertThat(test, is("Catcher in the Rye | J D Salinger | 1951"));
+    }
+
 }

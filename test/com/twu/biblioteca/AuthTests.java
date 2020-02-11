@@ -22,8 +22,8 @@ public class AuthTests {
     public void setUp() {
         IPrompterMock = mock(IPrompter.class);
         _testUsers = new ArrayList();
-        _testUsers.add(new User("123-4567", "password"));
-        _testUsers.add(new User("098-7654", "password"));
+        _testUsers.add(new User("123-4567", "password","will", "email@email.com", "07777777777"));
+        _testUsers.add(new User("098-7654", "password","will","email@email.com", "07777777777"));
         _Auth = new Auth(IPrompterMock, _testUsers);
         _mockUser = mock(User.class);
     }

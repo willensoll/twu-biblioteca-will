@@ -73,4 +73,16 @@ public class MenuTests {
         IMenuWithMock.printSelection("5");
         verify(mockIPrompter).print("Enter name of movie to borrow: ");
     }
+
+    @Test
+    public void callsCheckedOutBookList() {
+        IMenuWithMock.printSelection("6");
+        verify(mockIPrompter).print("*** Showing Checked Out Books ***");
+    }
+
+    @Test
+    public void callsPrintPersonalDetails() {
+        IMenuWithMock.printSelection("7");
+        verify(mockIPrompter).print("*** Showing your information ***");
+    }
 }

@@ -52,8 +52,11 @@ public class Menu extends Auth implements IMenu {
         _I_prompter.printWithNewLine("4 - List of Movies");
         _I_prompter.printWithNewLine("5 - Check out Movie");
         _I_prompter.printWithNewLine("6 - View checked out Books");
+        _I_prompter.printWithNewLine("7 - View your details");
         _I_prompter.printWithNewLine("Q - Quit Biblioteca");
         _I_prompter.print("Please select an option by key: ");
+        String selection = _I_prompter.readInput();
+        printSelection(selection);
     }
 
     public void printUnAuthSelection(String selection) {
@@ -109,6 +112,11 @@ public class Menu extends Auth implements IMenu {
                     _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _bookList);
                     _libraryItemPrinter.printCheckedOutList();
                     break;
+            case "7":
+                _I_prompter.printWithNewLine("*** Showing your information ***");
+                _I_prompter.printWithNewLine("*** Name | Email | phone number ***");
+                _I_prompter.printWithNewLine(super.get_authenticatedUser().getDetails());
+                break;
             case "Q":
                 quit();
                 break;

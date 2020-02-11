@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args ) {
+    public static void main(String[] args) {
         IPrompter IPrompter = new Prompter(System.out, new Scanner(System.in));
         ArrayList<Book> bookList = new ArrayList();
         ArrayList<Movie> movieList = new ArrayList();
@@ -20,9 +20,8 @@ public class Main {
         movieList.add(new Movie("Train to Busan", "Yeon Sang-ho", 2016, "4.9"));
         movieList.add(new Movie("Gladiator", "Ridley Scott", 2000, "4.8"));
 
-        userList.add(new User("123-4567", "password"));
-        userList.add(new User("098-7654", "password"));
-
+        userList.add(new User("123-4567", "password","will", "email@email.com", "07777777777"));
+        userList.add(new User("098-7654", "password", "will","email@email.com", "07777777777"));
 
         IMenu IMenu = new Menu(IPrompter, bookList, movieList, userList);
         App app = new App(IPrompter, IMenu);

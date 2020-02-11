@@ -26,7 +26,7 @@ public class CheckOutTests {
         itemList = new ArrayList<>();
         testBook = new Book("Catcher in the Rye", "J D Salinger", 1951);
         testBook2 = new Book("Sum", "David Eagleman", 2009);
-        user = new User("libStr", "libNum");
+        user = new User("libStr", "libNum","will", "email@email.com", "07777777777");
         itemList.add(testBook);
         itemList.add(testBook2);
         _checkOutItem = new CheckOutItem(IPrompterMock, itemList,"book", user);
