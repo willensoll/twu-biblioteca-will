@@ -7,8 +7,8 @@ public class Auth {
 
     private IPrompter _prompter;
     private Boolean _authenticated;
-    public ArrayList<User> _userList;
-
+    private ArrayList<User> _userList;
+    private User _authenticatedUser;
 
     public Auth(IPrompter prompter, ArrayList userList) {
         _prompter = prompter;
@@ -29,7 +29,7 @@ public class Auth {
        String pw = getPassword();
         for (User user: _userList) {
             if (libNum.equals(user.getLibraryNumber()) && pw.equals(user.getPassword())) {
-                user.login();
+                _authenticatedUser = user;
                 _authenticated = true;
                 return user;
             }
@@ -49,5 +49,9 @@ public class Auth {
 
     public Boolean getAuthenticated() {
         return _authenticated;
+    }
+
+    public User get_authenticatedUser() {
+        return _authenticatedUser;
     }
 }

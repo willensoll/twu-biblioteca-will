@@ -21,8 +21,6 @@ public class Menu extends Auth implements IMenu {
         _appInitialised = true;
         _bookList = bookList;
         _movieList = movieList;
-        _userList = userList;
-
     }
 
     public void initMenu() {
@@ -53,6 +51,7 @@ public class Menu extends Auth implements IMenu {
         _I_prompter.printWithNewLine("4 - Return a book");
         _I_prompter.printWithNewLine("5 - List of Movies");
         _I_prompter.printWithNewLine("6 - Check out Movie");
+        _I_prompter.printWithNewLine("7 - View checked out Books");
         _I_prompter.printWithNewLine("Q - Quit Biblioteca");
         _I_prompter.print("Please select an option by key: ");
         String selection = _I_prompter.readInput();
@@ -67,10 +66,10 @@ public class Menu extends Auth implements IMenu {
             case "2":
                 _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _bookList);
                 _I_prompter.printWithNewLine("*** Showing Books ***");
-                _libraryItemPrinter.run();
+                _libraryItemPrinter.printAvailableList();
                 break;
             case "3":
-                _checkoutItem = new CheckOutItem(_I_prompter, _bookList, "book");
+                _checkoutItem = new CheckOutItem(_I_prompter, _bookList, "book", super.get_authenticatedUser());
                 _checkoutItem.checkOut();
                 break;
             case "4":
@@ -81,12 +80,17 @@ public class Menu extends Auth implements IMenu {
                 _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _movieList);
                 _I_prompter.printWithNewLine("*** Showing Movies ***");
                 _I_prompter.printWithNewLine("*** Name | Director | Publish Date | Star Rating ***");
-                _libraryItemPrinter.run();
+                _libraryItemPrinter.printAvailableList();
                 break;
             case "6":
-                _checkoutItem = new CheckOutItem(_I_prompter, _movieList, "movie");
+                _checkoutItem = new CheckOutItem(_I_prompter, _movieList, "movie", super.get_authenticatedUser());
                 _checkoutItem.checkOut();
                 break;
+                case "7":
+                    _I_prompter.printWithNewLine("*** Showing Checked Out Books ***");
+                _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _bookList);
+                _libraryItemPrinter.printCheckedOutList();
+                    break;
             case "Q":
                 quit();
                 break;

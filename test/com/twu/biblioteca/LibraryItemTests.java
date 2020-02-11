@@ -1,5 +1,4 @@
 package com.twu.biblioteca;
-
 import com.twu.biblioteca.classes.LibraryItem;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,4 +28,16 @@ public class LibraryItemTests {
     public void libraryItem_has_publishedDate_value() {
         assertThat(testLibraryItem.getPublishYear(), is(1951));
     }
+
+    @Test
+    public void libraryItem_has_isAvailableBool_default_to_true() {
+        assertThat(testLibraryItem.getAvailable(), is(true));
+    }
+
+    @Test
+    public void libraryItem_has_checkedOutBy_string() {
+        testLibraryItem.setCheckedOutBy("will");
+        assertThat(testLibraryItem.getCheckedOutBy(), is("will"));
+    }
+
 }

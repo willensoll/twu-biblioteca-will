@@ -15,8 +15,12 @@ public class UserTests {
     }
 
     @Test
-    public void logIn_returns_true_when_logged_in() {
-        _user.login();
-        assertThat(_user.getLoggedIn(), is(true));
+    public void user_has_libraryNumber_string() {
+        assertThat(_user.getLibraryNumber(), is("123-4567"));
+    }
+
+    @Test
+    public void user_has_password_String() {
+        assertThat(_user.getPassword(), is("password"));
     }
 }

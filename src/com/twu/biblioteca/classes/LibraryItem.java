@@ -6,6 +6,7 @@ public class LibraryItem {
     private String author;
     private int publishYear;
     private Boolean isAvailable;
+    private String checkedOutBy;
 
     public LibraryItem(String n, String a, int py) {
         name = n;
@@ -39,4 +40,13 @@ public class LibraryItem {
         return name + " | " + author + " | " + publishYear;
     }
 
+    public String toListingLibView() { return name + " | " + checkedOutBy; }
+
+    public String getCheckedOutBy() {
+        return checkedOutBy;
+    }
+
+    public void setCheckedOutBy(String libraryId) {
+        checkedOutBy = libraryId;
+    }
 }

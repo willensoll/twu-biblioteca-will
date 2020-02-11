@@ -31,7 +31,7 @@ public class LibraryItemPrinterTests {
     @Test
     public void printBooks_only_returns_available_books() {
         testBook2.setAvailability(false);
-        libraryItemPrinter.run();
+        libraryItemPrinter.printAvailableList();
         verify(IPrompterMock).printWithNewLine("Catcher in the Rye | J D Salinger | 1951");
         verify(IPrompterMock, atMost(0)).printWithNewLine("Checkout book | Will Ensoll | 1992");
     }

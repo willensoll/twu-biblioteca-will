@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.classes.Book;
 import com.twu.biblioteca.classes.CheckOutItem;
+import com.twu.biblioteca.classes.User;
 import com.twu.biblioteca.interfaces.IPrompter;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class CheckOutTests {
     private ArrayList itemList;
     private Book testBook;
     private Book testBook2;
+    private User user;
 
 
     @Before
@@ -24,9 +26,10 @@ public class CheckOutTests {
         itemList = new ArrayList<>();
         testBook = new Book("Catcher in the Rye", "J D Salinger", 1951);
         testBook2 = new Book("Sum", "David Eagleman", 2009);
+        user = new User("libStr", "libNum");
         itemList.add(testBook);
         itemList.add(testBook2);
-        _checkOutItem = new CheckOutItem(IPrompterMock, itemList,"book");
+        _checkOutItem = new CheckOutItem(IPrompterMock, itemList,"book", user);
     }
 
     @Test
