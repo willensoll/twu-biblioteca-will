@@ -5,5 +5,7 @@ public interface IMenu {
 
     void printSelection(String selection);
 
+    void printUnAuthSelection(String selection);
+
     void quit();
 }

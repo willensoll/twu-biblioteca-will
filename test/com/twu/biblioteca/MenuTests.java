@@ -28,13 +28,13 @@ public class MenuTests {
 
     @Test
     public void takes_to_login_prompt() {
-        IMenuWithMock.printSelection("1");
+        IMenuWithMock.printUnAuthSelection("1");
         verify(mockIPrompter).print("Library Number: ");
     }
 
     @Test
     public void list_of_book_shown_when_selected_on_menu() {
-        IMenuWithMock.printSelection("2");
+        IMenuWithMock.printSelection("1");
         verify(mockIPrompter).printWithNewLine("*** Showing Books ***");
     }
 
@@ -52,25 +52,25 @@ public class MenuTests {
 
     @Test
     public void callsCheckoutBookFunction() {
-        IMenuWithMock.printSelection("3");
+        IMenuWithMock.printSelection("2");
         verify(mockIPrompter).print("Enter name of book to borrow: ");
     }
 
     @Test
     public void callsReturnBookFunction() {
-        IMenuWithMock.printSelection("4");
+        IMenuWithMock.printSelection("3");
         verify(mockIPrompter).print("Enter name of book to return: ");
     }
 
     @Test
     public void list_of_movie_shown_when_selected_on_menu() {
-        IMenuWithMock.printSelection("5");
+        IMenuWithMock.printSelection("4");
         verify(mockIPrompter).printWithNewLine("*** Showing Movies ***");
     }
 
     @Test
     public void callsCheckoutMovieFunction() {
-        IMenuWithMock.printSelection("6");
+        IMenuWithMock.printSelection("5");
         verify(mockIPrompter).print("Enter name of movie to borrow: ");
     }
 }
