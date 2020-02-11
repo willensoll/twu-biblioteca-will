@@ -22,8 +22,8 @@ public class Main {
 
         userList.add(new User("123-4567", "password","will", "email@email.com", "07777777777"));
         userList.add(new User("098-7654", "password", "will","email@email.com", "07777777777"));
-
-        IMenu IMenu = new Menu(IPrompter, bookList, movieList, userList);
+        Auth auth = new Auth(IPrompter, userList);
+        IMenu IMenu = new Menu(IPrompter, bookList, movieList, auth);
         App app = new App(IPrompter, IMenu);
         app.start();
     }

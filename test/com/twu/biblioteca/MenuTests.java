@@ -1,13 +1,11 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.classes.Book;
-import com.twu.biblioteca.classes.LibraryItem;
-import com.twu.biblioteca.classes.Menu;
-import com.twu.biblioteca.classes.Prompter;
+import com.twu.biblioteca.classes.*;
 import com.twu.biblioteca.interfaces.IMenu;
 import com.twu.biblioteca.interfaces.IPrompter;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
@@ -18,18 +16,21 @@ public class MenuTests {
 
     private IPrompter mockIPrompter;
     private IMenu IMenuWithMock;
+    private Auth _auth;
 
     @Before
     public void setUpMenuTests() {
         mockIPrompter = mock(Prompter.class);
         ArrayList mockList = new ArrayList<LibraryItem>();
-        IMenuWithMock = new Menu(mockIPrompter, mockList, mockList, mockList);
+        _auth = mock(Auth.class);
+        IMenuWithMock = new Menu(mockIPrompter, mockList, mockList, _auth);
+
     }
 
     @Test
     public void takes_to_login_prompt() {
         IMenuWithMock.printUnAuthSelection("1");
-        verify(mockIPrompter).print("Library Number: ");
+        verify(_auth).run();
     }
 
     @Test
@@ -77,12 +78,12 @@ public class MenuTests {
     @Test
     public void callsCheckedOutBookList() {
         IMenuWithMock.printSelection("6");
-        verify(mockIPrompter).print("*** Showing Checked Out Books ***");
+        verify(mockIPrompter).printWithNewLine("*** Showing Checked Out Books ***");
     }
 
     @Test
     public void callsPrintPersonalDetails() {
         IMenuWithMock.printSelection("7");
-        verify(mockIPrompter).print("*** Showing your information ***");
+        verify(mockIPrompter).printWithNewLine("*** Showing your information ***");
     }
 }

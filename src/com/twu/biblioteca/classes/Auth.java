@@ -51,7 +51,11 @@ public class Auth {
         return _authenticated;
     }
 
-    public User get_authenticatedUser() {
+    public User getAuthenticatedUser() {
         return _authenticatedUser;
+    }
+
+    public String getAuthenticatedUserDetails() {
+        return _authenticatedUser.getDetails();
     }
 }

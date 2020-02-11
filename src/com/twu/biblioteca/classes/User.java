@@ -8,7 +8,6 @@ public class User {
     private String PhoneNumber;
     private String Name;
 
-
     public User(String libraryNumber, String password,String name, String email, String phoneNumber) {
     LibraryNumber = libraryNumber;
     Password = password;
@@ -32,6 +31,5 @@ public class User {
     public String getDetails () {
         return Name + " | " + Email + " | " + PhoneNumber;
     }
-
 
 }

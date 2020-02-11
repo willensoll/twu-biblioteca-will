@@ -5,8 +5,7 @@ import com.twu.biblioteca.interfaces.IPrompter;
 
 import java.util.ArrayList;
 
-public class Menu extends Auth implements IMenu {
-
+public class Menu implements IMenu {
     private IPrompter _I_prompter;
     private Boolean _appInitialised;
     private ArrayList<Book> _bookList;
@@ -14,18 +13,19 @@ public class Menu extends Auth implements IMenu {
     private ReturnItem _returnItem;
     private CheckOutItem _checkoutItem;
     private LibraryItemPrinter _libraryItemPrinter;
+    private Auth _auth;
 
-    public Menu(IPrompter IPrompter, ArrayList bookList, ArrayList movieList, ArrayList userList) {
-        super(IPrompter, userList);
+    public Menu(IPrompter IPrompter, ArrayList bookList, ArrayList movieList, Auth auth) {
         _I_prompter = IPrompter;
         _appInitialised = true;
         _bookList = bookList;
         _movieList = movieList;
+        _auth = auth;
     }
 
     public void initMenu() {
         while (_appInitialised) {
-            if (super.getAuthenticated()) {
+            if (_auth.getAuthenticated()) {
                 initAuthMenu();
             } else {
                 initUnAuthMenu();
@@ -62,7 +62,7 @@ public class Menu extends Auth implements IMenu {
     public void printUnAuthSelection(String selection) {
         switch (selection.toUpperCase()) {
             case "1":
-                super.run();
+                _auth.run();
                 break;
             case "2":
                 _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _bookList);
@@ -89,7 +89,7 @@ public class Menu extends Auth implements IMenu {
                 _libraryItemPrinter.printAvailableList();
                 break;
             case "2":
-                _checkoutItem = new CheckOutItem(_I_prompter, _bookList, "book", super.get_authenticatedUser());
+                _checkoutItem = new CheckOutItem(_I_prompter, _bookList, "book", _auth.getAuthenticatedUser());
                 _checkoutItem.checkOut();
                 break;
             case "3":
@@ -103,7 +103,7 @@ public class Menu extends Auth implements IMenu {
                 _libraryItemPrinter.printAvailableList();
                 break;
             case "5":
-                _checkoutItem = new CheckOutItem(_I_prompter, _movieList, "movie", super.get_authenticatedUser());
+                _checkoutItem = new CheckOutItem(_I_prompter, _movieList, "movie", _auth.getAuthenticatedUser());
                 _checkoutItem.checkOut();
                 break;
             case "6":
@@ -115,7 +115,7 @@ public class Menu extends Auth implements IMenu {
             case "7":
                 _I_prompter.printWithNewLine("*** Showing your information ***");
                 _I_prompter.printWithNewLine("*** Name | Email | phone number ***");
-                _I_prompter.printWithNewLine(super.get_authenticatedUser().getDetails());
+                _I_prompter.printWithNewLine(_auth.getAuthenticatedUserDetails());
                 break;
             case "Q":
                 quit();
