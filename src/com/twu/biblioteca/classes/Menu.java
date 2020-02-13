@@ -68,6 +68,7 @@ public class Menu implements IMenu {
                 _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _bookList);
                 _I_prompter.printWithNewLine("*** Showing Books ***");
                 _libraryItemPrinter.printAvailableList();
+                break;
             case "3":
                 _libraryItemPrinter = new LibraryItemPrinter(_I_prompter, _movieList);
                 _I_prompter.printWithNewLine("*** Showing Movies ***");
@@ -76,6 +77,8 @@ public class Menu implements IMenu {
             case "Q":
                 quit();
                 break;
+            default:
+                _I_prompter.printWithNewLine("Please Select a Valid Option!");
         }
     }
 

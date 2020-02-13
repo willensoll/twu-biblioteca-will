@@ -8,7 +8,6 @@ public class App {
     private IPrompter _I_prompter;
     private IMenu _I_menu;
 
-
     public App(IPrompter IPrompter, IMenu IMenu) {
         _I_prompter = IPrompter;
         _I_menu = IMenu;
